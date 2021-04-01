@@ -113,9 +113,11 @@ void print(int reversed, node *root){
 int to_lower(char letter){
 
 	if(letter >= 'a' && letter <= 'z'){
+		//printf("to lower small letter %d\n", letter);
 		return letter;
 	}else if(letter >= 'A' && letter <= 'Z'){
-		return letter - ('A' + 'a');
+		//printf("to lower capital letter %d\n", letter + ('a' - 'A'));
+		return letter + ('a' - 'A');
 	}else{
 		return letter; 
 	}
@@ -124,7 +126,8 @@ int to_lower(char letter){
 // Return Index (by ASCII) by a given char
 int char_to_index(char letter){
 
-	return to_lower(letter) - 'a';
+	//printf("char to index %d\n", to_lower(letter) - 'a');
+	return to_lower(letter) - 'a'; 
 }
 
 // Returns 0 mean failure
@@ -141,8 +144,9 @@ int add_word(node *root, char *string){
 				return 0;
 			}
 		}
-		root->children[i]->letter = to_lower(string[0]);
-		return add_word(root->children[i], string +1); // change the pointer from char '0' in string to '1'
+		//printf("add word %d\n", to_lower(string[0])); 
+		root->children[i]->letter = to_lower(string[0]); 
+		return add_word(root->children[i], string + 1); // change the pointer from char '0' in string to '1'
 	}
 	return 1;
 }
